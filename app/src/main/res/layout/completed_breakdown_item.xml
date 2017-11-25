@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|left"
+    android:layout_margin="5dp"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical"
+        android:tag="Name" >
+
+        <TextView
+            android:id="@+id/field_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:tag="Name"
+            android:text="Field"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/field_sub_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:textColor="#7a7a7a"
+            android:text="FieldSub" />
+
+        <TextView
+            android:id="@+id/field_template_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/sbn_blue"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:text="TemplateName" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/field_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:tag="FCMain"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical"
+        android:layout_centerVertical="true">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/number_count_bg"
+            android:focusable="false"
+            android:tag="FC_LL"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/field_count_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="FC_TV"
+                android:background="@color/sbn_blue"
+                android:focusable="false"
+                android:text="99"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff"
+                android:color="#ffffff" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
