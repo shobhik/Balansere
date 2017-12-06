@@ -96,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, SensorActivity.class));
             }
         });
+        startServerButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                startActivity(new Intent(mContext, RotationVectorDemo.class));
+                return true;
+            }
+        });
     }
 
 

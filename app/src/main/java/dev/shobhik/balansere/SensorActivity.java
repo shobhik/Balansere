@@ -56,7 +56,8 @@ public class SensorActivity extends Activity {
         setContentView(R.layout.sensor_activity);
         mAccelSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelSensor = mAccelSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mMagneticSensor = mAccelSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+//        mMagneticSensor = mAccelSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        mMagneticSensor = mAccelSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
         button = findViewById(R.id.sensor_button);
         textAccelX = findViewById(R.id.sensor_text_x);
         textAccelY = findViewById(R.id.sensor_text_y);
