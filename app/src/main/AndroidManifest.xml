@@ -28,7 +28,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".SensorActivity" />
-        <activity android:name=".RotationVectorDemo"></activity>
+        <activity android:name=".SensorActivityBackup" />
+        <activity android:name=".RotationVectorDemo" />
+        <activity android:name=".rotator.RotationAttitudeDemo" />
     </application>
 
 </manifest>

@@ -22,12 +22,13 @@ import java.util.Collection;
 import java.util.List;
 
 import dev.shobhik.balansere.adapter.DeviceItemAdapter;
+import dev.shobhik.balansere.rotator.RotationAttitudeDemo;
 import dev.shobhik.balansere.service.NSDService;
 
 
 public class MainActivity extends AppCompatActivity {
     private MainActivity mActivity;
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "RotationAttitudeDemo";
 
     Context mContext;
     WifiP2pManager mManager;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     DeviceItemAdapter mAdapter;
     Button findPeersButton;
     Button startServerButton;
+    Button rotationVectorButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         lv.setAdapter(mAdapter);
         findPeersButton = findViewById(R.id.button);
         startServerButton = findViewById(R.id.button2);
+        rotationVectorButton = findViewById(R.id.button3);
 
         //Initialize WiFi interaction objects
         mNsdService = new NSDService(mContext);
@@ -96,10 +99,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, SensorActivity.class));
             }
         });
+        rotationVectorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, RotationVectorDemo.class));
+            }
+        });
         startServerButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                startActivity(new Intent(mContext, RotationVectorDemo.class));
+                startActivity(new Intent(mContext, SensorActivityBackup.class));
+                return true;
+            }
+        });
+        rotationVectorButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                startActivity(new Intent(mContext, RotationAttitudeDemo.class));
                 return true;
             }
         });
