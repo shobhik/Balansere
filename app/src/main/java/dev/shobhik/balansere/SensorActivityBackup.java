@@ -122,9 +122,12 @@ public class SensorActivityBackup extends Activity {
                 updateAverages(mAccelAveragesX, mAccelerometerReading[0]);
                 updateAverages(mAccelAveragesY, mAccelerometerReading[1]);
                 updateAverages(mAccelAveragesZ, mAccelerometerReading[2]);
-                textAccelAveX.setText("" + mAccelAveragesX[1]);
-                textAccelAveY.setText("" + mAccelAveragesY[1]);
-                textAccelAveZ.setText("" + mAccelAveragesZ[1]);
+//                textAccelAveX.setText("" + mAccelAveragesX[1]);
+//                textAccelAveY.setText("" + mAccelAveragesY[1]);
+//                textAccelAveZ.setText("" + mAccelAveragesZ[1]);
+                textAccelAveX.setText("" + Math.toDegrees(mAccelerometerReading[0]) );
+                textAccelAveY.setText("" + Math.toDegrees(mAccelerometerReading[1]) );
+                textAccelAveZ.setText("" + Math.toDegrees(mAccelerometerReading[2]) );
 
             }
             else if (event.sensor == mMagneticSensor) {
@@ -142,9 +145,9 @@ public class SensorActivityBackup extends Activity {
                 textMagAveY.setText("" + mMagAveragesY[1]);
                 textMagAveZ.setText("" + mMagAveragesZ[1]);
 
-                textAccelAveX.setText("" + mAccelAveragesX[1]);
-                textAccelAveY.setText("" + mAccelAveragesY[1]);
-                textAccelAveZ.setText("" + mAccelAveragesZ[1]);
+                textMagAveX.setText("" + Math.toDegrees(mMagnetometerReading[0]) );
+                textMagAveY.setText("" + Math.toDegrees(mMagnetometerReading[1]) );
+                textMagAveZ.setText("" + Math.toDegrees(mMagnetometerReading[2]) );
 
             }
 
