@@ -11,13 +11,11 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 /**
  * Created by Shobhik Ghosh on 11/21/2017.
  */
 
-public class SensorActivity extends Activity {
+public class SensorActivityBackup extends Activity {
 
     private static final String TAG = "SensorActivity";
     private SensorManager mAccelSensorManager;
@@ -50,27 +48,14 @@ public class SensorActivity extends Activity {
     TextView textMagAveY;
     TextView textMagAveZ;
 
-    // Gravity rotational data
-    private float gravity[];
-    // Magnetic rotational data
-    private float magnetic[]; //for magnetic rotational data
-    private float accels[] = new float[3];
-    private float mags[] = new float[3];
-    private float[] values = new float[3];
-
-    // azimuth, pitch and roll
-    private float azimuth;
-    private float pitch;
-    private float roll;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sensor_activity);
         mAccelSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelSensor = mAccelSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mMagneticSensor = mAccelSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-//        mMagneticSensor = mAccelSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+//        mMagneticSensor = mAccelSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        mMagneticSensor = mAccelSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
         button = findViewById(R.id.sensor_button);
         textAccelX = findViewById(R.id.sensor_text_x);
         textAccelY = findViewById(R.id.sensor_text_y);
@@ -126,64 +111,42 @@ public class SensorActivity extends Activity {
     private SensorEventListener mListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-//            if (event.sensor == mAccelSensor) {
-//                System.arraycopy(event.values, 0, mAccelerometerReading,
-//                        0, mAccelerometerReading.length);
-//                String result = printValues(mAccelerometerReading);
-//                textAccelX.setText(""+mAccelerometerReading[0]);
-//                textAccelY.setText(""+mAccelerometerReading[1]);
-//                textAccelZ.setText(""+mAccelerometerReading[2]);
-//                Log.v(TAG, "Acc: " + result);
-//                updateAverages(mAccelAveragesX, mAccelerometerReading[0]);
-//                updateAverages(mAccelAveragesY, mAccelerometerReading[1]);
-//                updateAverages(mAccelAveragesZ, mAccelerometerReading[2]);
-//                textAccelAveX.setText("" + mAccelAveragesX[1]);
-//                textAccelAveY.setText("" + mAccelAveragesY[1]);
-//                textAccelAveZ.setText("" + mAccelAveragesZ[1]);
-//
-//            }
-//            else if (event.sensor == mMagneticSensor) {
-//                System.arraycopy(event.values, 0, mMagnetometerReading,
-//                        0, mMagnetometerReading.length);
-//                String magresult = printValues(mAccelerometerReading);
-//                textMagX.setText(""+mMagnetometerReading[0]);
-//                textMagY.setText(""+mMagnetometerReading[1]);
-//                textMagZ.setText(""+mMagnetometerReading[2]);
-//                Log.v(TAG, "Mag: " + magresult);
-//                updateAverages(mMagAveragesX, mMagnetometerReading[0]);
-//                updateAverages(mMagAveragesY, mMagnetometerReading[1]);
-//                updateAverages(mMagAveragesZ, mMagnetometerReading[2]);
-//                textMagAveX.setText("" + mMagAveragesX[1]);
-//                textMagAveY.setText("" + mMagAveragesY[1]);
-//                textMagAveZ.setText("" + mMagAveragesZ[1]);
-//
-//            }
-            switch (event.sensor.getType()) {
-                case Sensor.TYPE_MAGNETIC_FIELD:
-                    mags = event.values.clone();
-                    break;
-                case Sensor.TYPE_ACCELEROMETER:
-                    accels = event.values.clone();
-                    break;
-            }
-            if (mags != null && accels != null) {
-                gravity = new float[9];
-                magnetic = new float[9];
-                SensorManager.getRotationMatrix(gravity, magnetic, accels, mags);
-                float[] outGravity = new float[9];
-                SensorManager.remapCoordinateSystem(gravity, SensorManager.AXIS_X,SensorManager.AXIS_Z, outGravity);
-                SensorManager.getOrientation(outGravity, values);
+            if (event.sensor == mAccelSensor) {
+                System.arraycopy(event.values, 0, mAccelerometerReading,
+                        0, mAccelerometerReading.length);
+                String result = printValues(mAccelerometerReading);
+                textAccelX.setText(""+mAccelerometerReading[0]);
+                textAccelY.setText(""+mAccelerometerReading[1]);
+                textAccelZ.setText(""+mAccelerometerReading[2]);
+                Log.v(TAG, "Acc: " + result);
+                updateAverages(mAccelAveragesX, mAccelerometerReading[0]);
+                updateAverages(mAccelAveragesY, mAccelerometerReading[1]);
+                updateAverages(mAccelAveragesZ, mAccelerometerReading[2]);
+                textAccelAveX.setText("" + mAccelAveragesX[1]);
+                textAccelAveY.setText("" + mAccelAveragesY[1]);
+                textAccelAveZ.setText("" + mAccelAveragesZ[1]);
 
-                azimuth = values[0] * 57.2957795f;
-                pitch =values[1] * 57.2957795f;
-                roll = values[2] * 57.2957795f;
-                mags = null;
-                accels = null;
             }
-            textAccelAveX.setText("" + pitch);
-            textAccelAveY.setText("" + roll);
-            textAccelAveZ.setText("" + azimuth);
+            else if (event.sensor == mMagneticSensor) {
+                System.arraycopy(event.values, 0, mMagnetometerReading,
+                        0, mMagnetometerReading.length);
+                String magresult = printValues(mAccelerometerReading);
+                textMagX.setText(""+mMagnetometerReading[0]);
+                textMagY.setText(""+mMagnetometerReading[1]);
+                textMagZ.setText(""+mMagnetometerReading[2]);
+                Log.v(TAG, "Mag: " + magresult);
+                updateAverages(mMagAveragesX, mMagnetometerReading[0]);
+                updateAverages(mMagAveragesY, mMagnetometerReading[1]);
+                updateAverages(mMagAveragesZ, mMagnetometerReading[2]);
+                textMagAveX.setText("" + mMagAveragesX[1]);
+                textMagAveY.setText("" + mMagAveragesY[1]);
+                textMagAveZ.setText("" + mMagAveragesZ[1]);
 
+                textAccelAveX.setText("" + mAccelAveragesX[1]);
+                textAccelAveY.setText("" + mAccelAveragesY[1]);
+                textAccelAveZ.setText("" + mAccelAveragesZ[1]);
+
+            }
 
         }
 
