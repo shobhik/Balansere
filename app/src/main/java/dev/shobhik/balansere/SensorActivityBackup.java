@@ -127,7 +127,7 @@ public class SensorActivityBackup extends Activity {
 //                textAccelAveZ.setText("" + mAccelAveragesZ[1]);
                 textAccelAveX.setText("" + Math.toDegrees(mAccelerometerReading[0]) );
                 textAccelAveY.setText("" + Math.toDegrees(mAccelerometerReading[1]) );
-                textAccelAveZ.setText("" + Math.toDegrees(mAccelerometerReading[2]) );
+                textAccelAveZ.setText("" + Math.toDegrees(mAccelerometerReading[2]) + "\n" + Math.atan2(mAccelerometerReading[0], mAccelerometerReading[1])/(Math.PI/180));
 
             }
             else if (event.sensor == mMagneticSensor) {

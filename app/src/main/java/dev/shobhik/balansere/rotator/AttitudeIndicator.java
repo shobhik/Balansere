@@ -18,9 +18,9 @@ public class AttitudeIndicator extends View {
 
   private static final boolean LOG_FPS = false;
 
-  private static final int SKY_COLOR = Color.parseColor("#035995");
+  private static final int SKY_COLOR = Color.parseColor("#addcfd");
   private static final int EARTH_COLOR = Color.parseColor("#3c9e00");
-  private static final int MIN_PLANE_COLOR = Color.parseColor("#fbb040");
+  private static final int MIN_PLANE_COLOR = Color.parseColor("#953f03");
   private static final float TOTAL_VISIBLE_PITCH_DEGREES = 45 * 2; // � 45�
 
   private final PorterDuffXfermode mXfermode;
@@ -119,29 +119,48 @@ public class AttitudeIndicator extends View {
 
     // Draw the earth as a rectangle, well beyond the view bounds
     // to account for large nose-down pitch.
-    canvas.drawRect(-mWidth, centerY, mWidth * 2, mHeight * 2, mEarthPaint);
+//    canvas.drawRect(-mWidth, centerY, mWidth * 2, mHeight * 2, mEarthPaint);
 
     // Draw white horizon and top pitch ladder
     float ladderStepY = mHeight / 12;
     canvas.drawLine(-mWidth, centerY, mWidth * 2, centerY, mPitchLadderPaint);
+    canvas.drawLine(centerX, -mHeight, centerX, mHeight * 2, mPitchLadderPaint);
     for (int i = 1; i <= 4; i++) {
       float y = centerY - ladderStepY * i;
-      float width = mWidth / 8;
+      float width = mWidth / 12;
       canvas.drawLine(centerX - width / 2, y, centerX + width / 2, y, mPitchLadderPaint);
     }
 
-    // Draw the bottom pitch ladder
-    float bottomLadderStepX = mWidth / 12;
-    float bottomLadderStepY = mWidth / 12;
-    canvas.drawLine(centerX, centerY, centerX - bottomLadderStepX * 3.5f, centerY
-        + bottomLadderStepY * 3.5f, mBottomPitchLadderPaint);
-    canvas.drawLine(centerX, centerY, centerX + bottomLadderStepX * 3.5f, centerY
-        + bottomLadderStepY * 3.5f, mBottomPitchLadderPaint);
-    for (int i = 1; i <= 3; i++) {
-      float y = centerY + bottomLadderStepY * i;
-      canvas.drawLine(centerX - bottomLadderStepX * i, y, centerX + bottomLadderStepX * i, y,
-          mBottomPitchLadderPaint);
+    for (int i = 1; i <= 4; i++) {
+      float y = centerY + ladderStepY * i;
+      float width = mWidth / 12;
+      canvas.drawLine(centerX - width / 2, y, centerX + width / 2, y, mPitchLadderPaint);
     }
+
+    for (int i = 1; i <= 4; i++) {
+      float x = centerY - ladderStepY * i;
+      float width = mWidth / 12;
+      canvas.drawLine(x, centerX - width / 2, x, centerX + width / 2, mPitchLadderPaint);
+    }
+
+    for (int i = 1; i <= 4; i++) {
+      float x = centerY + ladderStepY * i;
+      float width = mWidth / 12;
+      canvas.drawLine(x, centerX - width / 2, x, centerX + width / 2, mPitchLadderPaint);
+    }
+
+    // Draw the bottom pitch ladder
+//    float bottomLadderStepX = mWidth / 12;
+//    float bottomLadderStepY = mWidth / 12;
+//    canvas.drawLine(centerX, centerY, centerX - bottomLadderStepX * 3.5f, centerY
+//        + bottomLadderStepY * 3.5f, mBottomPitchLadderPaint);
+//    canvas.drawLine(centerX, centerY, centerX + bottomLadderStepX * 3.5f, centerY
+//        + bottomLadderStepY * 3.5f, mBottomPitchLadderPaint);
+//    for (int i = 1; i <= 3; i++) {
+//      float y = centerY + bottomLadderStepY * i;
+//      canvas.drawLine(centerX - bottomLadderStepX * i, y, centerX + bottomLadderStepX * i, y,
+//          mBottomPitchLadderPaint);
+//    }
 
     // Return to normal to draw the miniature plane
     canvas.restore();
@@ -154,7 +173,7 @@ public class AttitudeIndicator extends View {
     float minPlaneCircleRadiusY = mHeight / 6;
     RectF wingsCircleBounds = new RectF(centerX - minPlaneCircleRadiusX, centerY
         - minPlaneCircleRadiusY, centerX + minPlaneCircleRadiusX, centerY + minPlaneCircleRadiusY);
-    canvas.drawArc(wingsCircleBounds, 0, 180, false, mMinPlanePaint);
+    canvas.drawArc(wingsCircleBounds, 0, 360, false, mMinPlanePaint);
 
     // Wings of miniature plane
     float wingLength = mWidth / 6;
@@ -166,6 +185,9 @@ public class AttitudeIndicator extends View {
     // Draw vertical post
     canvas.drawLine(centerX, centerY + minPlaneCircleRadiusY, centerX, centerY
         + minPlaneCircleRadiusY + mHeight / 3, mMinPlanePaint);
+
+    canvas.drawLine(centerX, centerY - minPlaneCircleRadiusY, centerX, centerY
+        - minPlaneCircleRadiusY - mHeight / 3, mMinPlanePaint);
 
     return mSrcBitmap;
   }

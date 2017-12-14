@@ -2,6 +2,7 @@ package dev.shobhik.balansere.rotator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import dev.shobhik.balansere.R;
 
@@ -9,6 +10,7 @@ public class RotationAttitudeDemo extends AppCompatActivity implements Orientati
 
   private Orientation mOrientation;
   private AttitudeIndicator mAttitudeIndicator;
+  TextView tvX, tvY, tvZ;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +19,10 @@ public class RotationAttitudeDemo extends AppCompatActivity implements Orientati
 
     mOrientation = new Orientation(this);
     mAttitudeIndicator = (AttitudeIndicator) findViewById(R.id.attitude_indicator);
+
+    tvX = findViewById(R.id.tv_x);
+    tvY = findViewById(R.id.tv_y);
+    tvZ = findViewById(R.id.tv_z);
   }
 
   @Override
@@ -34,5 +40,8 @@ public class RotationAttitudeDemo extends AppCompatActivity implements Orientati
   @Override
   public void onOrientationChanged(float pitch, float roll) {
     mAttitudeIndicator.setAttitude(pitch, roll);
+    tvX.setText("" + pitch);
+    tvY.setText("" + roll);
+    tvZ.setText("" + (pitch + 90) );
   }
 }
