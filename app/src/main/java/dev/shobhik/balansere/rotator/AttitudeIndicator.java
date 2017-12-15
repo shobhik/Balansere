@@ -40,6 +40,7 @@ public class AttitudeIndicator extends View {
 
   private float mPitch = 0; // Degrees
   private float mRoll = 0; // Degrees, left roll is positive
+  private float mPitchOffset = 0; //Degrees we will offset pitch by for calibration purposes.
 
   public AttitudeIndicator(Context context) {
     this(context, null);
@@ -83,10 +84,15 @@ public class AttitudeIndicator extends View {
   }
 
   public void setAttitude(float pitch, float roll) {
-    mPitch = pitch+90;
     mRoll = roll;
-    Log.v("AttitudeIndicator", "Values: " + mPitch + ", " + mRoll);
+    Log.v("AttitudeIndicator", "Values: " + mPitch + ", " + mRoll + " | " + mPitchOffset);
     invalidate();
+  }
+
+  public void setCalibration(float amount) {
+    Log.v("AttitudeIndicator", "Calibrate: " + mPitch + ", " + amount);
+    mPitchOffset = amount;
+
   }
 
   @Override
