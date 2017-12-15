@@ -84,6 +84,7 @@ public class AttitudeIndicator extends View {
   }
 
   public void setAttitude(float pitch, float roll) {
+    mPitch = pitch + 90 - mPitchOffset;
     mRoll = roll;
     Log.v("AttitudeIndicator", "Values: " + mPitch + ", " + mRoll + " | " + mPitchOffset);
     invalidate();
