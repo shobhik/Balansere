@@ -9,6 +9,7 @@
         android:id="@+id/attitude_indicator_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         tools:context="com.kviation.sample.orientation.MainActivity">
 
         <dev.shobhik.balansere.rotator.AttitudeIndicator
