@@ -18,9 +18,11 @@ public class AttitudeIndicator extends View {
 
   private static final boolean LOG_FPS = false;
 
+//  private static final int SKY_COLOR = Color.parseColor("#addcfd");
   private static final int SKY_COLOR = Color.parseColor("#addcfd");
   private static final int EARTH_COLOR = Color.parseColor("#3c9e00");
-  private static final int MIN_PLANE_COLOR = Color.parseColor("#953f03");
+  private static final int MIN_PLANE_COLOR = Color.parseColor("#035995");
+//  private static final int MIN_PLANE_COLOR = Color.parseColor("#953f03");
   private static final float TOTAL_VISIBLE_PITCH_DEGREES = 45 * 2; // � 45�
 
   private final PorterDuffXfermode mXfermode;
@@ -178,9 +180,13 @@ public class AttitudeIndicator extends View {
     // Half-circle of miniature plane
     float minPlaneCircleRadiusX = mWidth / 6;
     float minPlaneCircleRadiusY = mHeight / 6;
+    float innerCircleRadius = mHeight / 20;
     RectF wingsCircleBounds = new RectF(centerX - minPlaneCircleRadiusX, centerY
         - minPlaneCircleRadiusY, centerX + minPlaneCircleRadiusX, centerY + minPlaneCircleRadiusY);
+    RectF innerCircleBounds = new RectF(centerX - innerCircleRadius, centerY
+        - innerCircleRadius, centerX + innerCircleRadius, centerY + innerCircleRadius);
     canvas.drawArc(wingsCircleBounds, 0, 360, false, mMinPlanePaint);
+    canvas.drawArc(innerCircleBounds, 0, 360, false, mMinPlanePaint);
 
     // Wings of miniature plane
     float wingLength = mWidth / 6;

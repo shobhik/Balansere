@@ -23,6 +23,7 @@ import java.util.List;
 
 import dev.shobhik.balansere.adapter.DeviceItemAdapter;
 import dev.shobhik.balansere.rotator.RotationAttitudeDemo;
+import dev.shobhik.balansere.rotator.RotationSensorActivity;
 import dev.shobhik.balansere.service.NSDService;
 
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         rotationVectorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, RotationVectorDemo.class));
+                startActivity(new Intent(mContext, RotationSensorActivity.class));
             }
         });
         startServerButton.setOnLongClickListener(new View.OnLongClickListener() {

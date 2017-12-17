@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SBNButtonSyle" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:background">#035995</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
 </resources>
