@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import dev.shobhik.balansere.R;
+import dev.shobhik.balansere.data.LocalData;
 
 public class RotationAttitudeDemo extends AppCompatActivity implements Orientation.Listener {
 
@@ -26,7 +27,7 @@ public class RotationAttitudeDemo extends AppCompatActivity implements Orientati
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Context mContext = this;
+    final Context mContext = this;
     setContentView(R.layout.main);
 
     Configuration configuration = mContext.getResources().getConfiguration();
@@ -58,17 +59,24 @@ public class RotationAttitudeDemo extends AppCompatActivity implements Orientati
     calibrateBtn = findViewById(R.id.calibrate_button);
     resetBtn = findViewById(R.id.calibration_reset_button);
 
+    offsetAmount  = Float.parseFloat(LocalData.getString(mContext, LocalData.CALIBRATION_VALUE, "0.0"));
+    mAttitudeIndicator.setCalibration(offsetAmount);
+
+
     calibrateBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         offsetAmount  = Float.parseFloat(tvZ.getText().toString());
         mAttitudeIndicator.setCalibration(offsetAmount);
+        LocalData.setString(mContext, LocalData.CALIBRATION_VALUE, tvZ.getText().toString());
       }
     });
     resetBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         mAttitudeIndicator.setCalibration(0.0f);
+        LocalData.setString(mContext, LocalData.CALIBRATION_VALUE, "0.0");
+
       }
     });
 
