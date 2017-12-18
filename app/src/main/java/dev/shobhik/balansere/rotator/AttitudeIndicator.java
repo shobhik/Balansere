@@ -88,14 +88,17 @@ public class AttitudeIndicator extends View {
   public void setAttitude(float pitch, float roll) {
     mPitch = pitch + 90 - mPitchOffset;
     mRoll = roll;
-    Log.v("AttitudeIndicator", "Values: " + mPitch + ", " + mRoll + " | " + mPitchOffset);
+//    Log.v("AttitudeIndicator", "Values: " + mPitch + ", " + mRoll + " | " + mPitchOffset);
     invalidate();
   }
 
   public void setCalibration(float amount) {
     Log.v("AttitudeIndicator", "Calibrate: " + mPitch + ", " + amount);
     mPitchOffset = amount;
+  }
 
+  public float getInclindation() {
+    return (mPitch);
   }
 
   @Override

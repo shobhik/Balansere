@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 
 public class LocalData {
     public static final String CALIBRATION_VALUE = "1";
+    public static final String CALIBRATION_VALUE_FLOAT = "2";
 
     public static long getLong(Context context, String name) {
 

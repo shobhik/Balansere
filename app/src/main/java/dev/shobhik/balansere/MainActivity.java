@@ -9,6 +9,7 @@ import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ import dev.shobhik.balansere.service.NSDService;
 public class MainActivity extends AppCompatActivity {
     private MainActivity mActivity;
     public static final String TAG = "RotationAttitudeDemo";
+    private static final int SENSOR_CODE = 1337;
 
     Context mContext;
     WifiP2pManager mManager;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     Button findPeersButton;
     Button startServerButton;
     Button rotationVectorButton;
+    int precisionDigits = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +106,12 @@ public class MainActivity extends AppCompatActivity {
         rotationVectorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, RotationSensorActivity.class));
+                Intent sensorIntent = new Intent(mContext, RotationSensorActivity.class);
+//                sensorIntent.putExtra("returnType", "boolean");
+                sensorIntent.putExtra("returnType", "float");
+                sensorIntent.putExtra("precision", precisionDigits);
+                sensorIntent.putExtra("boolPrecision", precisionDigits);
+                startActivityForResult(sensorIntent, SENSOR_CODE);
             }
         });
         startServerButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -135,6 +143,41 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         unregisterReceiver(mReceiver);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == SENSOR_CODE) {
+            if(resultCode == RESULT_OK) {
+                String result = "";
+                if(data.hasExtra("isLevel")){
+                    result = "" + data.getBooleanExtra("isLevel", false);
+                } else if (data.hasExtra("value")) {
+                    result = "" + String.format(getDecimalFormat(), data.getFloatExtra("value", 0.0f));
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setMessage(result);
+                builder.create().show();
+
+            }
+
+        }
+    }
+    private String getDecimalFormat() {
+        switch (precisionDigits) {
+            case 0:
+                return "%.0f";
+            case 1:
+                return "%.1f";
+            case 2:
+                return "%.2f";
+            case 3:
+                return "%.3f";
+            case 4:
+                return "%.4f";
+            default:
+                return "%.1f";
+        }
     }
 
 
