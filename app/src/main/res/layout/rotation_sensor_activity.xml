@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBG">
 
     <FrameLayout
         android:id="@+id/attitude_indicator_frame"
@@ -35,7 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:text="Rotation Angle (degrees):"
+            android:paddingLeft="10dp"
+            android:text="Rotation Angle:"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold" />
 
         <TextView
@@ -44,7 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/colorAccent" />
 
     </LinearLayout>
 
@@ -72,6 +75,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:text="CALIBRATION"
+                android:textColor="@color/colorAccentDark"
                 android:textStyle="bold" />
 
             <Button
@@ -108,6 +112,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:text="VALUES"
+                android:textColor="@color/colorAccentDark"
                 android:textStyle="bold" />
 
             <Button

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBG"
     android:orientation="vertical">
 
     <Button
@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/sensor_text_y"
@@ -33,7 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/sensor_text_z"
@@ -41,7 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/colorAccent" />
 
     </LinearLayout>
 
@@ -59,7 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/sensor_mag_text_y"
@@ -67,7 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/sensor_mag_text_z"
@@ -75,7 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/colorAccent" />
 
     </LinearLayout>
 
@@ -96,6 +102,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:text="TextView"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -107,6 +114,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:text="TextView"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -118,6 +126,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:text="TextView"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -140,6 +149,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:text="TextView"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -151,6 +161,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:text="TextView"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -162,6 +173,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:text="TextView"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold" />
 

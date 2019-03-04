@@ -19,7 +19,7 @@ public class AttitudeIndicator extends View {
   private static final boolean LOG_FPS = false;
 
 //  private static final int SKY_COLOR = Color.parseColor("#addcfd");
-  private static final int SKY_COLOR = Color.parseColor("#addcfd");
+  private static final int SKY_COLOR = Color.parseColor("#37474F");
   private static final int EARTH_COLOR = Color.parseColor("#3c9e00");
   private static final int MIN_PLANE_COLOR = Color.parseColor("#035995");
 //  private static final int MIN_PLANE_COLOR = Color.parseColor("#953f03");

@@ -2,7 +2,6 @@ package dev.shobhik.balansere.adapter;
 
 import android.content.Context;
 import android.net.wifi.p2p.WifiP2pDevice;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import dev.shobhik.balansere.R;
 
 /**

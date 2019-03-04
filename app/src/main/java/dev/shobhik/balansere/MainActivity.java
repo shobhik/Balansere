@@ -4,13 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.nsd.NsdServiceInfo;
-import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import dev.shobhik.balansere.adapter.DeviceItemAdapter;
 import dev.shobhik.balansere.rotator.RotationAttitudeDemo;
 import dev.shobhik.balansere.rotator.RotationSensorActivity;
@@ -44,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
     private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
 
-    ListView lv;
     TextView tv;
     DeviceItemAdapter mAdapter;
     Button findPeersButton;
@@ -57,10 +54,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mContext = this;
         setContentView(R.layout.activity_main);
-        lv = findViewById(R.id.listview);
         tv = findViewById(R.id.textview1);
-        mAdapter = new DeviceItemAdapter(mContext, R.id.listview, new ArrayList<WifiP2pDevice>());
-        lv.setAdapter(mAdapter);
         findPeersButton = findViewById(R.id.button);
         startServerButton = findViewById(R.id.button2);
         rotationVectorButton = findViewById(R.id.button3);
@@ -76,31 +70,38 @@ public class MainActivity extends AppCompatActivity {
         mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
         mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 
+//        findPeersButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                tv.setText("Searching for peers");
+//                mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
+//                    @Override
+//                    public void onSuccess() {
+//                        //TODO: Implement
+//                        Log.v(TAG, "Success finding peers");
+//                    }
+//
+//                    @Override
+//                    public void onFailure(int reasonCode) {
+//                        //TODO: Implement
+//                        Log.v(TAG, "Failure finding peers");
+//                    }
+//                });
+//
+//            }
+//        });
+
         findPeersButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                tv.setText("Searching for peers");
-                mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
-                    @Override
-                    public void onSuccess() {
-                        //TODO: Implement
-                        Log.v(TAG, "Success finding peers");
-                    }
-
-                    @Override
-                    public void onFailure(int reasonCode) {
-                        //TODO: Implement
-                        Log.v(TAG, "Failure finding peers");
-                    }
-                });
-
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, SpeedActivity.class));
             }
         });
 
         startServerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mContext, SensorActivity.class));
+                startActivity(new Intent(mContext, SensorActivityBackup.class));
             }
         });
         rotationVectorButton.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         startServerButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                startActivity(new Intent(mContext, SensorActivityBackup.class));
+                startActivity(new Intent(mContext, SensorActivity.class));
                 return true;
             }
         });

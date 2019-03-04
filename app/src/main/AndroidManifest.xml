@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.shobhik.balansere">
 
-    <uses-sdk android:minSdkVersion="14" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -28,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SensorActivity" />
+        <activity android:name=".SpeedActivity" />
         <activity android:name=".SensorActivityBackup" />
         <activity android:name=".RotationVectorDemo" />
         <activity android:name=".rotator.RotationAttitudeDemo" />
